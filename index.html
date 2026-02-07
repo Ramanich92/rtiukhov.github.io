@@ -3,87 +3,98 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Аудитор — аудит, диагностика рисков, подготовка к проверкам</title>
+  <title>Роман Тюхов — аудитор | аудит, диагностика рисков, подготовка к проверкам</title>
 
   <!-- SEO -->
   <meta name="description" content="Аудит и диагностика рисков для бизнеса. Подготовка к проверкам, точечный аудит участков, рекомендации и план исправлений. Москва и онлайн." />
   <meta name="robots" content="index,follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <link rel="canonical" href="https://rtiukhov.ru/" />
+  <link rel="canonical" href="https://tiukhov.ru/" />
 
   <!-- UI -->
-  <meta name="theme-color" content="#0b1020" />
-  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#126bc5" />
+  <meta name="color-scheme" content="light" />
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
   <meta property="og:title" content="Аудит и диагностика рисков для бизнеса" />
   <meta property="og:description" content="Найду слабые места в учёте и налогах, помогу подготовиться к проверкам. Отчёт и план действий." />
-  <meta property="og:url" content="https://rtiukhov.ru/" />
+  <meta property="og:url" content="https://tiukhov.ru/" />
   <!-- TODO: сделай og-image 1200x630 и укажи путь -->
-  <meta property="og:image" content="https://rtiukhov.ru/og.jpg" />
+  <meta property="og:image" content="https://tiukhov.ru/og.jpg" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Аудит и диагностика рисков для бизнеса" />
   <meta name="twitter:description" content="Найду слабые места в учёте и налогах, помогу подготовиться к проверкам. Отчёт и план действий." />
-  <meta name="twitter:image" content="https://rtiukhov.ru/og.jpg" />
+  <meta name="twitter:image" content="https://tiukhov.ru/og.jpg" />
 
-  <!-- TODO: добавь favicon -->
+  <!-- favicon -->
   <link rel="icon" href="/favicon.ico" />
 
   <style>
     :root{
-      --bg:#0b1020;
-      --card:#111a33;
-      --text:#e9eefc;
-      --muted:#aab6de;
-      --line:rgba(255,255,255,.10);
-      --accent:#6ea8ff;
-      --accent2:#8bffcc;
-      --danger:#ff6b6b;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 26px;
+      /* requested palette */
+      --accent:#126bc5;
+      --text:#2c2c2c;
+
+      /* light UI */
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted: rgba(44,44,44,.72);
+      --line: rgba(44,44,44,.14);
+
+      --shadow: 0 14px 44px rgba(44,44,44,.12);
+      --shadow2: 0 10px 28px rgba(44,44,44,.10);
+
+      --radius: 16px;
+      --radius2: 22px;
       --max: 1120px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      font-family: Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
       background:
-        radial-gradient(1000px 600px at 20% -10%, rgba(110,168,255,.25), transparent 60%),
-        radial-gradient(900px 600px at 90% 10%, rgba(139,255,204,.16), transparent 60%),
+        radial-gradient(900px 520px at 15% -10%, rgba(18,107,197,.18), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(18,107,197,.10), transparent 55%),
         var(--bg);
       color:var(--text);
       line-height:1.5;
     }
+
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
-    /* Focus styles */
-    a:focus-visible, button:focus-visible, summary:focus-visible{
+    /* focus */
+    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible{
       outline:none;
-      box-shadow: 0 0 0 4px rgba(110,168,255,.14);
+      box-shadow: 0 0 0 4px rgba(18,107,197,.16);
       border-radius: 12px;
     }
 
-    /* Skip link */
+    /* skip link */
     .skip{
       position:absolute; left:-9999px; top:10px;
-      background:#fff; color:#000; padding:10px 12px; border-radius:10px;
+      background:#fff; color:var(--text);
+      padding:10px 12px; border-radius:12px;
       font-weight:800;
       z-index:9999;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow2);
     }
     .skip:focus{left:10px}
 
+    /* topbar */
     .topbar{
       position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: rgba(11,16,32,.70);
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.78);
       border-bottom:1px solid var(--line);
     }
     .topbar-inner{
@@ -94,50 +105,51 @@
     .brand{
       display:flex; align-items:center; gap:12px;
       text-decoration:none;
-      font-weight:700;
-      letter-spacing:.2px;
+      font-weight:900;
+      letter-spacing:.1px;
     }
     .brand-badge{
       width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(110,168,255,.95), rgba(139,255,204,.75));
-      box-shadow: 0 10px 30px rgba(110,168,255,.25);
+      background: linear-gradient(135deg, rgba(18,107,197,1), rgba(18,107,197,.55));
+      box-shadow: 0 10px 22px rgba(18,107,197,.18);
     }
     nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
     nav a{
       text-decoration:none;
       color: var(--muted);
-      font-weight:600;
+      font-weight:800;
       font-size:14px;
       padding:8px 10px;
       border-radius:12px;
       transition: .15s ease;
     }
-    nav a:hover{color:var(--text); background:rgba(255,255,255,.06)}
-
-    .hero{
-      padding:52px 0 22px;
+    nav a:hover{
+      color: var(--text);
+      background: rgba(18,107,197,.08);
     }
+
+    /* hero */
+    .hero{padding:52px 0 22px;}
     .grid-hero{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap:22px;
       align-items:stretch;
     }
-    @media (max-width: 920px){
-      .grid-hero{grid-template-columns:1fr}
-    }
+    @media (max-width: 920px){ .grid-hero{grid-template-columns:1fr} }
 
     .panel{
       border:1px solid var(--line);
-      background: rgba(17,26,51,.68);
+      background: rgba(255,255,255,.92);
       border-radius: var(--radius2);
       box-shadow: var(--shadow);
     }
     .panel.pad{padding:26px}
+
     .kicker{
       color: var(--muted);
-      font-weight:700;
-      letter-spacing:.2px;
+      font-weight:900;
+      letter-spacing:.25px;
       text-transform:uppercase;
       font-size:12px;
     }
@@ -147,14 +159,14 @@
       line-height:1.1;
       letter-spacing:-.6px;
     }
-    @media(max-width:520px){
-      h1{font-size:34px}
-    }
+    @media(max-width:520px){ h1{font-size:34px} }
+
     .lead{
       color: var(--muted);
       font-size:16px;
       margin:10px 0 16px;
     }
+
     .bullets{
       margin:0; padding:0; list-style:none;
       display:grid; gap:10px;
@@ -166,79 +178,85 @@
     .dot{
       margin-top:6px;
       width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: var(--accent);
       flex:0 0 10px;
-      box-shadow: 0 8px 20px rgba(110,168,255,.25);
+      box-shadow: 0 8px 18px rgba(18,107,197,.18);
     }
+
     .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+
     .btn{
-      appearance:none; border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
+      appearance:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.86);
       color:var(--text);
       padding:12px 14px;
       border-radius:14px;
-      font-weight:800;
+      font-weight:900;
       text-decoration:none;
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
       transition:.15s ease;
       cursor:pointer;
+      box-shadow: 0 8px 22px rgba(44,44,44,.06);
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(18,107,197,.06);
+    }
     .btn.primary{
-      border-color: rgba(110,168,255,.35);
-      background: linear-gradient(135deg, rgba(110,168,255,.95), rgba(110,168,255,.55));
-      color:#061025;
+      border-color: rgba(18,107,197,.30);
+      background: linear-gradient(135deg, rgba(18,107,197,1), rgba(18,107,197,.78));
+      color:#fff;
+      box-shadow: 0 12px 28px rgba(18,107,197,.22);
     }
-    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.primary:hover{filter:brightness(1.03)}
+
     .trust{
       margin-top:12px;
       display:flex; flex-wrap:wrap; gap:10px;
       color: var(--muted);
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
     }
     .pill{
       padding:8px 10px;
       border:1px solid var(--line);
       border-radius:999px;
-      background: rgba(255,255,255,.04);
+      background: rgba(18,107,197,.06);
     }
 
+    /* tabs */
     .tabs{
       display:flex; gap:8px; flex-wrap:wrap;
       margin-bottom:16px;
     }
     .tab{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.86);
       color: var(--muted);
       padding:10px 12px;
       border-radius:14px;
-      font-weight:800;
+      font-weight:900;
       cursor:pointer;
       transition:.15s ease;
       user-select:none;
       font-size:13px;
     }
-    .tab:hover{background:rgba(255,255,255,.08); color:var(--text)}
+    .tab:hover{
+      background: rgba(18,107,197,.08);
+      color: var(--text);
+    }
     .tab.active{
-      border-color: rgba(110,168,255,.35);
-      background: rgba(110,168,255,.16);
+      border-color: rgba(18,107,197,.35);
+      background: rgba(18,107,197,.14);
       color: var(--text);
     }
 
-    .side-card{
-      padding:22px;
-      display:grid;
-      gap:14px;
-    }
-    .side-title{
-      font-size:18px; font-weight:900; letter-spacing:-.2px;
-    }
-    .mini{
-      color:var(--muted); font-size:14px;
-    }
+    /* side */
+    .side-card{padding:22px; display:grid; gap:14px;}
+    .side-title{font-size:18px; font-weight:900; letter-spacing:-.2px;}
+    .mini{color:var(--muted); font-size:14px;}
     .side-list{
       margin:0; padding:0; list-style:none;
       display:grid; gap:10px;
@@ -246,11 +264,9 @@
     .side-list li{
       display:flex; gap:10px; align-items:flex-start;
       color: var(--muted);
-      font-weight:700;
+      font-weight:800;
     }
-    .hr{
-      height:1px; background: var(--line); border:0; margin:0;
-    }
+    .hr{height:1px; background: var(--line); border:0; margin:0;}
 
     section{padding:42px 0}
     .section-head{
@@ -266,23 +282,24 @@
     .sub{
       margin:0;
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
       max-width:760px;
     }
+
+    /* services cards */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    @media(max-width: 980px){
-      .cards{grid-template-columns:1fr}
-    }
+    @media(max-width: 980px){ .cards{grid-template-columns:1fr} }
+
     .card{
       border:1px solid var(--line);
-      background: rgba(17,26,51,.60);
+      background: var(--card);
       border-radius: var(--radius);
       padding:18px;
-      box-shadow: 0 12px 36px rgba(0,0,0,.18);
+      box-shadow: var(--shadow2);
       display:grid;
       gap:10px;
       min-height: 220px;
@@ -295,78 +312,90 @@
     .meta{
       display:flex; flex-wrap:wrap; gap:8px;
       color: var(--muted);
-      font-weight:800;
+      font-weight:900;
       font-size:12px;
     }
     .tag{
       padding:6px 8px;
       border-radius:999px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
+      background: rgba(18,107,197,.06);
     }
     .card ul{
       margin:0; padding-left:18px;
       color: var(--muted);
-      font-weight:700;
+      font-weight:800;
     }
     .card .bottom{
       margin-top:auto;
       display:flex; justify-content:flex-start; gap:10px; flex-wrap:wrap;
     }
 
+    /* process steps */
     .steps{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap:12px;
     }
-    @media(max-width: 980px){
-      .steps{grid-template-columns:1fr}
-    }
+    @media(max-width: 980px){ .steps{grid-template-columns:1fr} }
+
     .step{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.86);
       border-radius: var(--radius);
       padding:16px;
       display:grid; gap:8px;
+      box-shadow: var(--shadow2);
     }
     .step .num{
       width:34px; height:34px; border-radius:12px;
       display:flex; align-items:center; justify-content:center;
       font-weight:900;
-      color:#061025;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#fff;
+      background: var(--accent);
+      box-shadow: 0 10px 20px rgba(18,107,197,.20);
     }
     .step .t{font-weight:900}
-    .step .d{color:var(--muted); font-weight:700; font-size:14px}
+    .step .d{color:var(--muted); font-weight:800; font-size:14px}
 
+    /* cases */
     .cases{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    @media(max-width: 980px){
-      .cases{grid-template-columns:1fr}
-    }
+    @media(max-width: 980px){ .cases{grid-template-columns:1fr} }
+
     .case{
       border:1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(17,26,51,.55);
+      background: var(--card);
       padding:18px;
       display:grid; gap:10px;
+      box-shadow: var(--shadow2);
     }
-    .case .k{color:var(--muted); font-weight:900; font-size:12px; letter-spacing:.2px; text-transform:uppercase}
+    .case .k{
+      color:var(--muted);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.2px;
+      text-transform:uppercase
+    }
     .case .v{font-weight:900}
-    .case .p{color:var(--muted); font-weight:700; font-size:14px}
+    .case .p{color:var(--muted); font-weight:800; font-size:14px}
 
+    /* faq */
     .faq{
       border:1px solid var(--line);
       border-radius: var(--radius2);
       overflow:hidden;
-      background: rgba(17,26,51,.50);
+      background: var(--card);
+      box-shadow: var(--shadow2);
     }
     details{
       border-top:1px solid var(--line);
       padding:14px 16px;
+      background: rgba(255,255,255,.86);
     }
     details:first-child{border-top:none}
     summary{
@@ -381,7 +410,7 @@
     summary::-webkit-details-marker{display:none}
     .faq .ans{
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
       margin-top:10px;
       max-width: 900px;
     }
@@ -390,70 +419,82 @@
       border:1px solid var(--line);
       display:flex; align-items:center; justify-content:center;
       color:var(--muted);
-      background: rgba(255,255,255,.03);
+      background: rgba(18,107,197,.06);
       flex:0 0 26px;
     }
 
+    /* contact */
     .contact-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
       align-items:stretch;
     }
-    @media(max-width: 980px){
-      .contact-grid{grid-template-columns:1fr}
+    @media(max-width: 980px){ .contact-grid{grid-template-columns:1fr} }
+
+    .form{display:grid; gap:10px;}
+    label{
+      display:grid; gap:6px;
+      font-weight:900;
+      color:var(--muted);
+      font-size:13px
     }
-    .form{
-      display:grid; gap:10px;
-    }
-    label{display:grid; gap:6px; font-weight:800; color:var(--muted); font-size:13px}
     input, textarea{
       width:100%;
       padding:12px 12px;
       border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: #fff;
       color: var(--text);
       outline:none;
-      font-weight:700;
+      font-weight:800;
       font-size:14px;
     }
     textarea{min-height: 110px; resize:vertical}
     input:focus, textarea:focus{
-      border-color: rgba(110,168,255,.45);
-      box-shadow: 0 0 0 4px rgba(110,168,255,.10);
+      border-color: rgba(18,107,197,.45);
+      box-shadow: 0 0 0 4px rgba(18,107,197,.12);
     }
+
     .fine{
       color: var(--muted);
       font-size:12px;
-      font-weight:700;
+      font-weight:800;
       margin:0;
     }
-    .fine a{color: var(--text)}
+    .fine a{color: var(--accent); text-decoration:none;}
+    .fine a:hover{text-decoration:underline;}
+
     .ok{
       display:none;
       padding:12px 14px;
       border-radius:14px;
-      border:1px solid rgba(139,255,204,.35);
-      background: rgba(139,255,204,.12);
+      border:1px solid rgba(18,107,197,.30);
+      background: rgba(18,107,197,.08);
       color: var(--text);
       font-weight:900;
     }
+
     footer{
       padding:24px 0 40px;
       color: var(--muted);
       border-top:1px solid var(--line);
       margin-top: 20px;
+      background: rgba(255,255,255,.55);
     }
     .foot{
       display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
       align-items:center;
     }
-    .foot a{color:var(--muted); text-decoration:none; font-weight:800}
-    .foot a:hover{color:var(--text)}
+    .foot a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:900;
+    }
+    .foot a:hover{color: var(--accent);}
+
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
 
-    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto !important;}
       *{transition:none !important; animation:none !important;}
@@ -466,15 +507,15 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Аудитор (частная практика)",
-    "url": "https://rtiukhov.ru/",
+    "url": "https://tiukhov.ru/",
     "areaServed": ["RU"],
     "serviceType": ["Аудит", "Диагностика рисков", "Подготовка к проверкам", "Консультации"],
-    "telephone": "+70000000000",
-    "email": "mail@rtiukhov.ru",
-    "sameAs": ["https://t.me/username"],
+    "telephone": "+79851658342",
+    "email": "ramanich@mail.ru",
+    "sameAs": ["https://t.me/tiukhov"],
     "founder": {
       "@type": "Person",
-      "name": "Роман Тихухов",
+      "name": "Роман Тюхов",
       "jobTitle": "Аудитор",
       "address": {
         "@type": "PostalAddress",
@@ -497,7 +538,7 @@
       <div class="topbar-inner">
         <a class="brand" href="#top" aria-label="На главную">
           <span class="brand-badge" aria-hidden="true"></span>
-          <span>Роман Тихухов — аудитор</span>
+          <span>Роман Тюхов — аудитор</span>
         </a>
 
         <nav aria-label="Навигация">
@@ -541,8 +582,7 @@
             <div class="cta-row">
               <a class="btn primary" href="#contact" id="ctaPrimary">Получить первичную оценку</a>
               <a class="btn" href="#contact" id="ctaSecondary">Записаться на звонок 15 минут</a>
-              <!-- Быстрая кнопка в Telegram -->
-              <a class="btn" href="https://t.me/username" target="_blank" rel="noopener" id="ctaTelegram">Написать в Telegram</a>
+              <a class="btn" href="https://t.me/tiukhov" target="_blank" rel="noopener" id="ctaTelegram">Написать в Telegram</a>
             </div>
 
             <div class="trust" aria-label="Доверие">
@@ -570,9 +610,9 @@
 
             <div class="mini">
               <strong>Контакты:</strong><br />
-              Тел: <a id="linkPhone" class="mono" href="tel:+70000000000">+7 (000) 000-00-00</a><br />
-              Почта: <a id="linkEmail" class="mono" href="mailto:mail@rtiukhov.ru">mail@rtiukhov.ru</a><br />
-              Telegram: <a id="linkTg" class="mono" href="https://t.me/username" target="_blank" rel="noopener">@username</a>
+              Тел: <a id="linkPhone" class="mono" href="tel:+79851658342">+7 (985) 165-83-42</a><br />
+              Почта: <a id="linkEmail" class="mono" href="mailto:ramanich@mail.ru">ramanich@mail.ru</a><br />
+              Telegram: <a id="linkTg" class="mono" href="https://t.me/tiukhov" target="_blank" rel="noopener">@tiukhov</a>
             </div>
           </aside>
         </div>
@@ -588,7 +628,7 @@
         </div>
 
         <div class="panel pad">
-          <p style="margin:0; color:var(--muted); font-weight:700; font-size:16px; max-width:980px;">
+          <p style="margin:0; color:var(--muted); font-weight:800; font-size:16px; max-width:980px;">
             Я — аудитор с опытом <strong>___ лет</strong>. Специализируюсь на <strong>инициативном аудите</strong>, <strong>диагностике налоговых и учётных рисков</strong>,
             <strong>подготовке к проверкам</strong> и <strong>точечной проверке участков учёта</strong> для компаний малого и среднего бизнеса.
             По итогам работы вы получаете <strong>понятный отчёт</strong> с рисками, приоритетами и <strong>пошаговым планом</strong> исправлений.
@@ -857,7 +897,7 @@
 
               <label>
                 Телефон или Telegram
-                <input name="contact" autocomplete="tel" inputmode="tel" placeholder="+7… или @username" required />
+                <input name="contact" autocomplete="tel" inputmode="tel" placeholder="+7… или @tiukhov" required />
               </label>
 
               <label>
@@ -867,20 +907,14 @@
 
               <div class="cta-row" style="margin-top:6px;">
                 <button class="btn primary" type="submit" id="btnSubmit">Отправить</button>
-                <a class="btn" href="https://t.me/username" target="_blank" rel="noopener" id="btnTg">Написать в Telegram</a>
-                <a class="btn" href="tel:+70000000000" id="btnCall">Позвонить</a>
+                <a class="btn" href="https://t.me/tiukhov" target="_blank" rel="noopener" id="btnTg">Написать в Telegram</a>
+                <a class="btn" href="tel:+79851658342" id="btnCall">Позвонить</a>
               </div>
 
               <p class="fine">
                 Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.
                 <a href="/privacy.html">Политика</a> • <a href="/consent.html">Согласие</a>
               </p>
-
-              <!-- TODO: если нужен реальный приём заявок — подключи обработчик:
-                   1) endpoint на сервере (PHP/Node), или
-                   2) форму в Tilda/Bitrix/CRM, или
-                   3) Formspree/Netlify Forms (если размещение позволяет).
-              -->
             </form>
           </div>
 
@@ -896,11 +930,11 @@
               <span class="pill">Отчёт + план</span>
             </div>
 
-            <div class="panel pad" style="background:rgba(255,255,255,.03); box-shadow:none;">
+            <div class="panel pad" style="background:rgba(255,255,255,.86); box-shadow:none;">
               <div class="mini">
-                <strong>Телефон:</strong> <a id="cPhone" class="mono" href="tel:+70000000000">+7 (000) 000-00-00</a><br />
-                <strong>Почта:</strong> <a id="cEmail" class="mono" href="mailto:mail@rtiukhov.ru">mail@rtiukhov.ru</a><br />
-                <strong>Telegram:</strong> <a id="cTg" class="mono" href="https://t.me/username" target="_blank" rel="noopener">@username</a><br />
+                <strong>Телефон:</strong> <a id="cPhone" class="mono" href="tel:+79851658342">+7 (985) 165-83-42</a><br />
+                <strong>Почта:</strong> <a id="cEmail" class="mono" href="mailto:ramanich@mail.ru">ramanich@mail.ru</a><br />
+                <strong>Telegram:</strong> <a id="cTg" class="mono" href="https://t.me/tiukhov" target="_blank" rel="noopener">@tiukhov</a><br />
               </div>
             </div>
 
@@ -915,7 +949,7 @@
     <footer>
       <div class="wrap">
         <div class="foot">
-          <div>© <span id="y"></span> Роман Тихухов</div>
+          <div>© <span id="y"></span> Роман Тюхов</div>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <a href="#services">Услуги</a>
             <a href="#contact">Оставить заявку</a>
@@ -1030,10 +1064,8 @@
       $('#ctaPrimary').textContent = o.cta1;
       $('#ctaSecondary').textContent = o.cta2;
 
-      // default lead type
       $('#lead_type').value = o.leadType;
 
-      // analytics hook
       trackGoal('offer_switch_' + o.leadType);
     }
 
@@ -1092,15 +1124,13 @@
     emailLinks.forEach(el => el.addEventListener('click', () => trackGoal('click_email')));
 
     // ===== Form submit (demo) =====
-    // Сейчас форма "фейково" отправляется, чтобы не ломать статический сайт.
-    // Подключи реальный endpoint и убери preventDefault.
     $('#leadForm').addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const form = e.currentTarget;
       const data = new FormData(form);
 
-      // Honeypot: если заполнено — считаем ботом
+      // Honeypot: если заполнено — бот
       if ((data.get('company_site') || '').toString().trim() !== '') return;
 
       // TODO: реальная отправка:
@@ -1112,10 +1142,9 @@
       form.reset();
       fillUtm();
 
-      // Важно: после reset восстанавливаем lead_type текущего оффера
+      // после reset восстанавливаем lead_type текущего оффера
       renderOffer(currentOfferKey);
 
-      // мягкий скролл к сообщению
       $('#formOk').scrollIntoView({behavior:'smooth', block:'start'});
     });
 
