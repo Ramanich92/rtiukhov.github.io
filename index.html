@@ -8,15 +8,27 @@
   <!-- SEO -->
   <meta name="description" content="Аудит и диагностика рисков для бизнеса. Подготовка к проверкам, точечный аудит участков, рекомендации и план исправлений. Москва и онлайн." />
   <meta name="robots" content="index,follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="canonical" href="https://rtiukhov.ru/" />
+
+  <!-- UI -->
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="color-scheme" content="dark" />
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
   <meta property="og:title" content="Аудит и диагностика рисков для бизнеса" />
   <meta property="og:description" content="Найду слабые места в учёте и налогах, помогу подготовиться к проверкам. Отчёт и план действий." />
   <meta property="og:url" content="https://rtiukhov.ru/" />
   <!-- TODO: сделай og-image 1200x630 и укажи путь -->
   <meta property="og:image" content="https://rtiukhov.ru/og.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Аудит и диагностика рисков для бизнеса" />
+  <meta name="twitter:description" content="Найду слабые места в учёте и налогах, помогу подготовиться к проверкам. Отчёт и план действий." />
+  <meta name="twitter:image" content="https://rtiukhov.ru/og.jpg" />
 
   <!-- TODO: добавь favicon -->
   <link rel="icon" href="/favicon.ico" />
@@ -38,6 +50,7 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
@@ -50,6 +63,23 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* Focus styles */
+    a:focus-visible, button:focus-visible, summary:focus-visible{
+      outline:none;
+      box-shadow: 0 0 0 4px rgba(110,168,255,.14);
+      border-radius: 12px;
+    }
+
+    /* Skip link */
+    .skip{
+      position:absolute; left:-9999px; top:10px;
+      background:#fff; color:#000; padding:10px 12px; border-radius:10px;
+      font-weight:800;
+      z-index:9999;
+    }
+    .skip:focus{left:10px}
+
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
@@ -422,6 +452,12 @@
     .foot a{color:var(--muted); text-decoration:none; font-weight:800}
     .foot a:hover{color:var(--text)}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto !important;}
+      *{transition:none !important; animation:none !important;}
+    }
   </style>
 
   <!-- Schema.org -->
@@ -433,6 +469,9 @@
     "url": "https://rtiukhov.ru/",
     "areaServed": ["RU"],
     "serviceType": ["Аудит", "Диагностика рисков", "Подготовка к проверкам", "Консультации"],
+    "telephone": "+70000000000",
+    "email": "mail@rtiukhov.ru",
+    "sameAs": ["https://t.me/username"],
     "founder": {
       "@type": "Person",
       "name": "Роман Тихухов",
@@ -451,6 +490,8 @@
 </head>
 
 <body>
+  <a class="skip" href="#top">Перейти к содержанию</a>
+
   <header class="topbar">
     <div class="wrap">
       <div class="topbar-inner">
@@ -793,7 +834,7 @@
 
         <div class="contact-grid">
           <div class="panel pad">
-            <div class="ok" id="formOk">Заявка отправлена. Я свяжусь с вами в ближайшее время.</div>
+            <div class="ok" id="formOk" role="status" aria-live="polite">Заявка отправлена. Я свяжусь с вами в ближайшее время.</div>
 
             <form class="form" id="leadForm" method="post" action="#">
               <!-- UTM hidden fields -->
@@ -804,6 +845,11 @@
               <input type="hidden" name="utm_term" id="utm_term" />
               <input type="hidden" name="lead_type" id="lead_type" />
 
+              <!-- Honeypot (anti-spam): should stay empty -->
+              <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+                <label>Не заполнять <input name="company_site" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
               <label>
                 Имя
                 <input name="name" autocomplete="name" placeholder="Как к вам обращаться" required />
@@ -811,7 +857,7 @@
 
               <label>
                 Телефон или Telegram
-                <input name="contact" autocomplete="tel" placeholder="+7… или @username" required />
+                <input name="contact" autocomplete="tel" inputmode="tel" placeholder="+7… или @username" required />
               </label>
 
               <label>
@@ -889,14 +935,28 @@
     $('#y').textContent = new Date().getFullYear();
 
     // ===== UTM capture into hidden fields =====
-    (function fillUtm(){
+    function fillUtm(){
       const params = new URLSearchParams(location.search);
       const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
       keys.forEach(k => {
         const el = document.getElementById(k);
         if (el) el.value = params.get(k) || "";
       });
-    })();
+    }
+    fillUtm();
+
+    // ===== Basic analytics hooks (Yandex Metrika if exists) =====
+    // 1) Вставь счётчик Яндекс.Метрики в <head>
+    // 2) Замени COUNTER_ID на свой
+    const COUNTER_ID = 0; // TODO: поставь номер счётчика Метрики
+
+    function trackGoal(goalName){
+      try{
+        if (typeof ym === 'function' && COUNTER_ID) {
+          ym(COUNTER_ID, 'reachGoal', goalName);
+        }
+      }catch(e){}
+    }
 
     // ===== Offers (tabs) =====
     const offers = {
@@ -941,16 +1001,31 @@
       }
     };
 
+    let currentOfferKey = 'owner';
+
     function renderOffer(key){
+      currentOfferKey = key;
       const o = offers[key] || offers.owner;
 
       $('#heroTitle').textContent = o.title;
       $('#heroLead').textContent = o.lead;
 
       const bullets = $('#heroBullets');
-      bullets.innerHTML = o.bullets.map(b => (
-        `<li><span class="dot" aria-hidden="true"></span><span>${b}</span></li>`
-      )).join("");
+      bullets.innerHTML = "";
+      o.bullets.forEach(text => {
+        const li = document.createElement('li');
+
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        dot.setAttribute('aria-hidden', 'true');
+
+        const span = document.createElement('span');
+        span.textContent = text;
+
+        li.appendChild(dot);
+        li.appendChild(span);
+        bullets.appendChild(li);
+      });
 
       $('#ctaPrimary').textContent = o.cta1;
       $('#ctaSecondary').textContent = o.cta2;
@@ -962,16 +1037,39 @@
       trackGoal('offer_switch_' + o.leadType);
     }
 
-    $$('.tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        $$('.tab').forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected','false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected','true');
+    // ===== Tabs accessibility: roving tabindex + arrow navigation =====
+    const tabs = $$('.tab');
 
-        renderOffer(btn.dataset.offer);
+    function setActiveTab(btn){
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected','false');
+        t.tabIndex = -1;
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      btn.tabIndex = 0;
+      renderOffer(btn.dataset.offer);
+    }
+
+    tabs.forEach((btn, idx) => {
+      btn.tabIndex = btn.classList.contains('active') ? 0 : -1;
+
+      btn.addEventListener('click', () => setActiveTab(btn));
+
+      btn.addEventListener('keydown', (e) => {
+        const key = e.key;
+        if (!['ArrowLeft','ArrowRight','Home','End'].includes(key)) return;
+
+        e.preventDefault();
+        let next = idx;
+        if (key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length;
+        if (key === 'ArrowRight') next = (idx + 1) % tabs.length;
+        if (key === 'Home') next = 0;
+        if (key === 'End') next = tabs.length - 1;
+
+        tabs[next].focus();
+        setActiveTab(tabs[next]);
       });
     });
 
@@ -982,19 +1080,6 @@
         trackGoal('service_click_' + a.dataset.lead);
       });
     });
-
-    // ===== Basic analytics hooks (Yandex Metrika if exists) =====
-    // 1) Вставь счётчик Яндекс.Метрики в <head>
-    // 2) Замени COUNTER_ID на свой
-    const COUNTER_ID = 0; // TODO: поставь номер счётчика Метрики
-
-    function trackGoal(goalName){
-      try{
-        if (typeof ym === 'function' && COUNTER_ID) {
-          ym(COUNTER_ID, 'reachGoal', goalName);
-        }
-      }catch(e){}
-    }
 
     // Track clicks: phone / tg / email
     const phoneLinks = ['#linkPhone','#btnCall','#cPhone'].map(sel => $(sel)).filter(Boolean);
@@ -1015,22 +1100,20 @@
       const form = e.currentTarget;
       const data = new FormData(form);
 
+      // Honeypot: если заполнено — считаем ботом
+      if ((data.get('company_site') || '').toString().trim() !== '') return;
+
       // TODO: реальная отправка:
       // await fetch('/api/lead', { method:'POST', body: data });
 
       trackGoal('lead_submit');
       $('#formOk').style.display = 'block';
-      form.reset();
 
-      // восстановим utm после reset
-      (function refillUtm(){
-        const params = new URLSearchParams(location.search);
-        const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
-        keys.forEach(k => {
-          const el = document.getElementById(k);
-          if (el) el.value = params.get(k) || "";
-        });
-      })();
+      form.reset();
+      fillUtm();
+
+      // Важно: после reset восстанавливаем lead_type текущего оффера
+      renderOffer(currentOfferKey);
 
       // мягкий скролл к сообщению
       $('#formOk').scrollIntoView({behavior:'smooth', block:'start'});
