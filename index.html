@@ -2,22 +2,222 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Роман Тюхов</title>
-  <meta name="description" content="Личный сайт: кто я, чем занимаюсь и контакты." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Роман Тюхов — аудитор</title>
+  <meta name="description" content="Роман Тюхов — аудитор. Контакты: Telegram @tiukhov, Ramanich@mail.ru, +7 985 165-83-42" />
+  <link rel="canonical" href="https://rtiukhov.ru/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Роман Тюхов — аудитор" />
+  <meta property="og:description" content="Контакты: Telegram @tiukhov, Ramanich@mail.ru, +7 985 165-83-42" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rtiukhov.ru/" />
+
   <style>
-    body{font-family:system-ui,Segoe UI,Arial;max-width:860px;margin:40px auto;padding:0 16px;line-height:1.6}
-    a{color:inherit}
-    .card{border:1px solid #ddd;border-radius:14px;padding:18px}
+    :root{
+      --bg:#0b0c10;
+      --card:#11131a;
+      --text:#e8eaf0;
+      --muted:#a7b0c0;
+      --line:#22283a;
+      --accent:#7c5cff;
+      --accent2:#22c55e;
+      --radius:18px;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --max: 980px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb;
+        --card:#ffffff;
+        --text:#0f172a;
+        --muted:#475569;
+        --line:#e2e8f0;
+        --shadow: 0 12px 30px rgba(2,6,23,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(124,92,255,.22), transparent 55%),
+        radial-gradient(1000px 600px at 90% 10%, rgba(34,197,94,.14), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:.9}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 70px}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      position:sticky; top:0; padding:14px 0; backdrop-filter: blur(10px);
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+    }
+    .brand b{font-size:15px}
+    .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+    nav{display:flex; gap:12px; flex-wrap:wrap}
+    nav a{font-size:14px; color:var(--muted); padding:8px 10px; border-radius:12px}
+    nav a:hover{background:rgba(124,92,255,.12); color:var(--text)}
+
+    .hero{
+      margin-top:18px;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:28px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 240px at 20% 0%, rgba(124,92,255,.22), transparent 55%),
+        radial-gradient(700px 240px at 90% 30%, rgba(34,197,94,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .hero > *{position:relative}
+    h1{font-size:34px; margin:0 0 10px}
+    .lead{font-size:16px; color:var(--muted); margin:0 0 18px}
+
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px; border-radius:14px;
+      border:1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+      font-size:14px;
+    }
+    .btn.primary{
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      background: linear-gradient(135deg, rgba(124,92,255,.20), rgba(34,197,94,.08));
+    }
+    .btn.ghost{ background: transparent; }
+    .btn.disabled{ opacity:.6; cursor:not-allowed; pointer-events:none; }
+
+    .pill{display:inline-flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{font-size:12px; color:var(--muted); border:1px solid var(--line); padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.02)}
+
+    section{margin-top:18px}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px}
+    .card{
+      grid-column: span 12;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+    }
+    .card h2{font-size:16px; margin:0 0 8px}
+    .card p{margin:0; color:var(--muted)}
+    .meta{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+
+    footer{margin-top:22px; color:var(--muted); font-size:13px; text-align:center}
+    @media (max-width: 720px){
+      h1{font-size:28px}
+      header{position:static; backdrop-filter:none}
+    }
   </style>
 </head>
+
 <body>
-  <h1>Роман Тюхов</h1>
-  <p>Коротко о себе: специализация, чем полезен, чем занимаюсь.</p>
-  <div class="card">
-    <h2>Контакты</h2>
-    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-    <p>Telegram: <a href="https://t.me/yourusername">@yourusername</a></p>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Роман Тюхов</b>
+          <small>Аудитор</small>
+        </div>
+      </div>
+      <nav aria-label="Навигация">
+        <a href="#about">Обо мне</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Роман Тюхов</h1>
+        <p class="lead">Аудитор. Помогаю разобраться с учётом и документами — аккуратно, по делу и без лишней бюрократии.</p>
+
+        <div class="pill">
+          <span class="tag">Консультации</span>
+          <span class="tag">Анализ рисков</span>
+          <span class="tag">Рекомендации</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="#contact">Связаться</a>
+          <a class="btn" href="https://t.me/tiukhov" target="_blank" rel="noreferrer">Telegram @tiukhov</a>
+          <a class="btn" href="tel:+79851658342">Позвонить: +7 985 165-83-42</a>
+          <a class="btn ghost disabled" href="#" aria-disabled="true" title="Добавим позже">Яндекс Дзен (скоро)</a>
+        </div>
+      </section>
+
+      <section id="about" class="grid" aria-label="Обо мне">
+        <div class="card">
+          <h2>Обо мне</h2>
+          <p>
+            Здесь можно добавить 3–5 предложений: опыт, специализация, с какими задачами чаще помогаешь и какой результат получают клиенты.
+            Если хочешь — помогу оформить это в “деловом” стиле.
+          </p>
+          <div class="meta">
+            <span class="tag">Москва / онлайн</span>
+            <span class="tag">Русский</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="grid" aria-label="Контакты">
+        <div class="card">
+          <h2>Контакты</h2>
+          <p>Пиши или звони — отвечаю в Telegram и по email.</p>
+
+          <div class="meta">
+            <a class="btn" href="mailto:Ramanich@mail.ru">Ramanich@mail.ru</a>
+            <button class="btn" type="button" id="copyEmail">Скопировать email</button>
+            <a class="btn" href="https://t.me/tiukhov" target="_blank" rel="noreferrer">@tiukhov</a>
+            <a class="btn" href="tel:+79851658342">+7 985 165-83-42</a>
+          </div>
+
+          <div class="meta">
+            <span class="tag">Дзен: добавим ссылку позже</span>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Роман Тюхов · rtiukhov.ru
+      </footer>
+    </main>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const email = 'Ramanich@mail.ru';
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(email);
+        const btn = document.getElementById('copyEmail');
+        const old = btn.textContent;
+        btn.textContent = 'Скопировано ✓';
+        setTimeout(() => (btn.textContent = old), 1200);
+      }catch(e){
+        alert('Email: ' + email);
+      }
+    });
+  </script>
 </body>
 </html>
